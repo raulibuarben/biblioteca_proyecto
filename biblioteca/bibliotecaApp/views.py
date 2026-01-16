@@ -1,13 +1,18 @@
 from django.shortcuts import redirect, render
 
 from .forms import AutorForm, LibroForm 
-from .models import Libro
+from .models import Autor, Libro
 
 # Create your views here.
 #Vista para mostrar la lista de libros
 def lista_libros(request):
     libros = Libro.objects.all()
     return render(request, 'bibliotecaApp/lista_libros.html', {'libros': libros})
+
+#Vista para mostrar la lista de autores
+def lista_autores(request):
+    autores = Autor.objects.all()
+    return render(request, 'bibliotecaApp/lista_autores.html', {'autores': autores})
 
 
 #Vista para formulario de inserción de libros

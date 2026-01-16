@@ -9,8 +9,8 @@ class LibroForm(forms.ModelForm):
         fields = ['titulo', 'autores', 'fecha_publicacion', 'isbn']
         widgets = {
             'fecha_publicacion': forms.DateInput(attrs={'type': 'date'}),
-            'autores': forms.CheckboxSelectMultiple(),
-        }  
+            'autores': forms.SelectMultiple(attrs={'class': 'form-control'}),
+        }
 
 #Formulario para la inserción de autores
 class AutorForm(forms.ModelForm):
