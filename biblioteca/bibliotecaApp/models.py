@@ -1,10 +1,11 @@
 import uuid
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 #Modelo para los libros de la biblioteca, pueden tener varios autores
-class Libro(models.Model):
-    id =models.UUIDField(_("ID"), primary_key=True, default=uuid.uuid4, editable=False)
+class Libro(models.Model):  
+    id = models.UUIDField(_("ID"), primary_key=True, default=uuid.uuid4, editable=False)
     titulo = models.CharField(max_length=200)
     autores = models.ManyToManyField('Autor')
     fecha_publicacion = models.DateField()
