@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Libros por Autor</title>
+    <link rel="stylesheet" href="{% static 'bibliotecaApp/CSS/busquedalibros.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Buscar Libros por Autor</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'inicio' %}">Inicio</a></li>
+                <li><a href="{% url 'lista_autores' %}">Autores</a></li>
+                <li><a href="{% url 'lista_libros' %}">Libros</a></li>
+                <li><a href="{% url 'busquedalibro' %}">Buscar Libro</a></li>
+                <li><a href="{% url 'insertar_libro' %}">Insertar Libro</a></li>
+                <li><a href="{% url 'insertar_autor' %}">Insertar Autor</a></li>
+            </ul>
+        </nav>
+    </header>
+<main>
+    <section>
+        <h2>Formulario de Búsqueda</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Buscar</button>
+        </form>
+    </section>
+
+    {% if libros is not None %} 
+        <hr>
+        <section>
+            {% if autor %}
+                <h3>Resultados para: {{ autor.nombre }} {{ autor.apellido }}</h3>
+                {% if libros %}
+                    <ul>
+                        {% for libro in libros %}
+                            <li>{{ libro.titulo }} ({{ libro.fecha_publicacion|date:"Y" }})</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Este autor no tiene libros registrados.</p>
+                {% endif %}
+            {% else %}
+                <p style="color: red;">No se encontró ningún autor con ese nombre y apellido.</p>
+            {% endif %}
+        </section>
+    {% endif %}
+</main>
+</body>
+</html> 

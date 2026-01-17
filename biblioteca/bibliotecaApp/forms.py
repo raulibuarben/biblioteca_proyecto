@@ -21,3 +21,10 @@ class AutorForm(forms.ModelForm):
             'fecha_nacimiento': forms.DateInput(attrs={'type': 'date'}),
         }   
 
+
+# Formulario para la búsqueda de libros por nombre y apellido del autor
+class BusquedaAutorForm(forms.Form):
+    nombre = forms.CharField(label='Nombre del Autor', max_length=100)
+    apellido = forms.CharField(label='Apellido del Autor', max_length=100)    
+
+    

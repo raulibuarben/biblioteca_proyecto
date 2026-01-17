@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 
-from .forms import AutorForm, LibroForm 
+from .forms import AutorForm, BusquedaAutorForm, LibroForm 
 from .models import Autor, Libro
 
 # Create your views here.
@@ -44,3 +44,28 @@ def insertar_autor(request):
 def inicio(request):
     return render(request, 'bibliotecaApp/inicio.html')
 
+# Vista para el formulario de búsqueda de libros por nombre y apellido del autor
+    
+
+def libros_por_autor(request):
+    form = BusquedaAutorForm()
+    libros = None
+    autor = None
+
+    if request.method == 'POST':
+        form = BusquedaAutorForm(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data['nombre']
+            apellido = form.cleaned_data['apellido']
+            try:
+                autor = Autor.objects.get(nombre=nombre, apellido=apellido)
+                # Usamos el campo 'autores' que descubrimos antes por el error
+                libros = Libro.objects.filter(autores=autor)
+            except Autor.DoesNotExist:
+                libros = [] # Autor no encontrado
+
+    return render(request, 'bibliotecaApp/busquedalibro.html', {
+        'form': form,
+        'libros': libros,
+        'autor': autor
+    })

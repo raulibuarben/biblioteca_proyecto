@@ -7,6 +7,5 @@ urlpatterns = [
     path('insertarlibro/', views.insertar_libro, name='insertar_libro'),
     path('insertarautor/', views.insertar_autor, name='insertar_autor'),
     path('', views.inicio, name='inicio'),
-
-
+    path('busqueda/', views.libros_por_autor, name='busquedalibro'),
 ]
