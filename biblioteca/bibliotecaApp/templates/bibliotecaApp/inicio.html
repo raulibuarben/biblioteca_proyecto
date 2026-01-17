@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca - Inicio</title>
+    <link rel="stylesheet" href="{% static 'bibliotecaApp/CSS/inicio.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a la Biblioteca</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'inicio' %}">Inicio</a></li>
+                <li><a href="{% url 'lista_autores' %}">Autores</a></li>
+                <li><a href="{% url 'lista_libros' %}">Libros</a></li>
+                <li><a href="{% url 'insertar_libro' %}">Insertar Libro</a></li>
+                <li><a href="{% url 'insertar_autor' %}">Insertar Autor</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Sección Principal</h2>
+        <p>Aquí puedes gestionar los libros y autores de la biblioteca.</p>
+    </main>
+</body>
+</html>

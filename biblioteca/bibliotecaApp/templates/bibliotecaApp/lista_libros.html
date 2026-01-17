@@ -1,16 +1,43 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Libros</title>
+    <link rel="stylesheet" href="{% static 'bibliotecaApp/CSS/lista_libros.css' %}">
 </head>
 <body>
-    <h1>Lista de Libros</h1>
-    <ul>
-        {% for libro in libros %}
-            <li>{{ libro.titulo }} - {{ libro.fecha_publicacion }}</li>
-        {% endfor %}
-    </ul>
+    <header>
+        <h1>Lista de Libros</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'inicio' %}">Inicio</a></li>
+                <li><a href="{% url 'lista_autores' %}">Autores</a></li>
+                <li><a href="{% url 'lista_libros' %}">Libros</a></li>
+                <li><a href="{% url 'insertar_libro' %}">Insertar Libro</a></li>
+                <li><a href="{% url 'insertar_autor' %}">Insertar Autor</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Fecha de Publicación</th>
+                    <th>Autor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for libro in libros %}
+                    <tr>
+                        <td>{{ libro.titulo }}</td>
+                        <td>{{ libro.fecha_publicacion }}</td>
+                        <td>{{ libro.autores.all|join:", " }}</td>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
 </body>
 </html>

@@ -1,30 +1,45 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lista de Autores</title>
+    <link rel="stylesheet" href="{% static 'bibliotecaApp/CSS/lista_autores.css' %}">
 </head>
 <body>
-    <h1>Lista de Autores</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            {% for autor in autores %}
-            <tr>
-                <td>{{ autor.id }}</td>
-                <td>{{ autor.nombre }}</td>
-                <td>{{ autor.apellido }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <header>
+        <h1>Lista de Autores</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'inicio' %}">Inicio</a></li>
+                <li><a href="{% url 'lista_autores' %}">Autores</a></li>
+                <li><a href="{% url 'lista_libros' %}">Libros</a></li>
+                <li><a href="{% url 'insertar_libro' %}">Insertar Libro</a></li>
+                <li><a href="{% url 'insertar_autor' %}">Insertar Autor</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for autor in autores %}
+                <tr>
+                    <td>{{ autor.id }}</td>
+                    <td>{{ autor.nombre }}</td>
+                    <td>{{ autor.apellido }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
 </body>
 </html>

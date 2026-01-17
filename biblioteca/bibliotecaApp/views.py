@@ -38,3 +38,9 @@ def insertar_autor(request):
     else:
         form = AutorForm()
     return render(request, 'bibliotecaApp/insertar_autor.html', {'form': form})
+
+
+# Vista para la página de inicio
+def inicio(request):
+    return render(request, 'bibliotecaApp/inicio.html')
+
